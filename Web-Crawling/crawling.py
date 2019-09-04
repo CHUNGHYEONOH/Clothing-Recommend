@@ -1,6 +1,13 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import pymysql
 
+#MYSQL connection
+conn = pymysql.connect(port = 1902, host='localhost', user='root', password='1234', database='mysql', charset='utf8')
+
+
+
+'''
 html = urlopen("https://store.musinsa.com/app/contents/bestranking?u_cat_cd=001")
 page = BeautifulSoup(html, "html.parser")
 
@@ -29,12 +36,15 @@ for l in li:
     image = currentpage.find("div",{"class":"product-img"})
     image = image.find("img")
     image = image['src']        #이미지
+ 
     table = currentpage.find("table", {"class":"table_th_grey"}).find("tbody")
-    table = table.find_all("tr")
-
-
+    table = table.find_all("tr")    
     table = table[2].find_all("td")
     length[] = table[0]       #총장
-    shoulder[] = table[1]     #어깨너비
+    shoulder[] = table[1] 어깨너비
     chest[] = table[2]        #가슴단면
     sleeve[] = table[3]       #소매길이  
+'''
+
+
+
