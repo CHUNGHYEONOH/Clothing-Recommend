@@ -1,13 +1,21 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-import pymysql
+import MySQLdb
 
 #MYSQL connection
-conn = pymysql.connect(port = 1902, host='localhost', user='root', password='1234', database='mysql', charset='utf8')
+connect = MySQLdb.connect(port = 1902, host='localhost', user='root', password='1234', database='mysql', charset='utf8')
+cursor = connect.cursor()
 
+try:
+    cursor.execute("CREATE TABLE clothes (name VARCHAR(100) NOT NULL,\
+        brand VARCHAR(50), price INT(15), image VARCHAR(100), category VARCHAR(30),\
+        subcategory VARCHAR(30) )")
+        # 이름, 브랜드, 가격, 이미지, 카테고리, 세부카테고리
+except MySQLdb._exceptions.OperationalError:
+    print("already exist")
 
+connect.commit()
 
-'''
 html = urlopen("https://store.musinsa.com/app/contents/bestranking?u_cat_cd=001")
 page = BeautifulSoup(html, "html.parser")
 
@@ -26,17 +34,26 @@ for l in li:
 
     currenthtml = urlopen(clothpage)
     currentpage = BeautifulSoup(currenthtml, "html.parser")
-    title = currentpage.find("span",{"class":"product_title"})
-    title = title.find("span").text     #이름
+    name = currentpage.find("span",{"class":"product_title"})
+    name = name.find("span").text     #이름
     itemcategory = currentpage.find("p",{"class":"item_categories"})
     info = itemcategory.find_all("a")
     brand = info[0].text        #브랜드
-    subject = info[1].text      #품목
-    category = info[2].text     #세부품목
+    category = info[1].text      #품목
+    subcategory = info[2].text     #세부품목
     image = currentpage.find("div",{"class":"product-img"})
     image = image.find("img")
     image = image['src']        #이미지
- 
+    price = 5000
+    DATA = "INSERT INTO clothes VALUES (" + "'" + name + "'" + ", " + "'" + brand\
+        + "'" + ", " + "'" + str(price) + "'" + ", " + "'" + image + "'" +  ", " + "'" + category + "'" + ", " + "'" + subcategory + "'" + ")"
+    try:
+        cursor.execute(DATA)
+    except:
+        print(name+brand+category)
+    # 이름, 브랜드, 가격, 이미지, 카테고리, 세부카테고리
+
+'''
     table = currentpage.find("table", {"class":"table_th_grey"}).find("tbody")
     table = table.find_all("tr")    
     table = table[2].find_all("td")
@@ -45,6 +62,7 @@ for l in li:
     chest[] = table[2]        #가슴단면
     sleeve[] = table[3]       #소매길이  
 '''
+connect.commit()
 
-
-
+cursor.close()
+connect.close()
