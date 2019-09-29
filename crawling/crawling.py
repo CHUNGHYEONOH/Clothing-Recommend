@@ -9,8 +9,8 @@ cursor = connect.cursor()
 
 try:
     cursor.execute("CREATE TABLE clothes (name VARCHAR(100) NOT NULL,\
-        brand VARCHAR(50), price INT(15), image VARCHAR(100), category VARCHAR(30),\
-        subcategory VARCHAR(30) )")
+        designer VARCHAR(50), price VARCHAR(15), image VARCHAR(100), \
+        category VARCHAR(30), color VARCHAR(30) )")
         # 이름, 브랜드, 가격, 이미지, 카테고리, 세부카테고리
 except MySQLdb._exceptions.OperationalError:
     print("already exist")
@@ -95,14 +95,16 @@ for l in li:
         except:
             continue
 
-        DATA = "INSERT INTO clothes VALUES (" + "'" + name + "'" + ", " + "'" + brand\
+        DATA = "INSERT INTO clothes VALUES (" + "'" + name + "'" + ", " + "'" + designer \
         + "'" + ", " + "'" + price + "'" + ", " + "'" + image + "'" +  ", "\
-        + "'" + category + "'" + ", " + "'" + subcategory + "'" + ")"
-        try:
-        cursor.execute(DATA)
-        except:
-        print(name+brand+category)
-
+        + "'" + category + "'" + ", " + "'" + color + "'" + ")"
         
-            
-            
+        try:
+            cursor.execute(DATA)
+        except:
+            print(name+designer+category)
+
+connect.commit()
+
+cursor.close()
+connect.close()    
