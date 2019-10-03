@@ -9,7 +9,7 @@ cursor = connect.cursor()
 
 try:
     cursor.execute("CREATE TABLE clothes (name VARCHAR(100) NOT NULL,\
-        designer VARCHAR(50), price VARCHAR(15), image VARCHAR(100), \
+        designer VARCHAR(50), price INTEGER(15), image VARCHAR(100), \
         category VARCHAR(30), color VARCHAR(30) )")
         # 이름, 브랜드, 가격, 이미지, 카테고리, 세부카테고리
 except MySQLdb._exceptions.OperationalError:
@@ -42,42 +42,50 @@ for l in li:
             name = currentpage.find("span",{"class":"product-details__name"})
             name = name.find("span").text       #이름
         except:
-            print(name)
+            print("name")
             continue
         
         try:
             designer = currentpage.find("span",{"class":"product-details__designer"})
             designer = designer.find("span").text       #디자이너
         except:
+            print("designer")
             continue
         
         try:
-            price = currentpage.find("span",{"class":"product-details__price--value price-sale"}).text
+            price = currentpage.find("span",{"class":"product-details__price--local price-sale"}).text
         except:
+            print("price")
             continue
 
         try:
             image = currentpage.find("img", {"class":"product-image product-image__main"})
             image = image['src']        #사진
         except:
+            print("image")
             continue
+        
+        '''
         try:
-            ul = currentpage.find("ul",{"class":"product-accordion__list"})
-            li = ul.find_all("li")
+            ul = currentpage.find("ul",{"class":"product-accordion__content--inner"})
+            li = ul.findall("li")
             description = ""
             for l in li:
                 description += l.text       #설명
         except:
+            print("description")
             continue
-        
+        '''
+
         try:
             color = currentpage.find("div",{"class":"product-colour--single threeSelectionItems"})
             color = color.find("p")
             color = color.text      
             color = color[8:]       #색깔
         except:
+            print("color")
             continue
-
+        
         clothsize = {"XS":'', "S":'', "M":'', "L":'', "XL":'', "XXL":''}
 
         try:
@@ -93,14 +101,24 @@ for l in li:
                 else:
                     size = size[0]
         except:
+            print("size")
             continue
 
+        price = re.findall('[0-9]',price)
+        price = ''.join(price)
+        price = int(price)
+        price = price/100
+        price = int(price)
+        print(price)
+
+        
         DATA = "INSERT INTO clothes VALUES (" + "'" + name + "'" + ", " + "'" + designer \
-        + "'" + ", " + "'" + price + "'" + ", " + "'" + image + "'" +  ", "\
+        + "'" + ", " + "'" + str(price) + "'" + ", " + "'" + image + "'" +  ", "\
         + "'" + category + "'" + ", " + "'" + color + "'" + ")"
         
         try:
             cursor.execute(DATA)
+            print(name)
         except:
             print(name+designer+category)
 
