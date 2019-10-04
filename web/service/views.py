@@ -18,5 +18,11 @@ def post_detail(request, pk):
         'post':post,
     })
 
-def mainpage(request):
-    return render(request, 'service/mainpage.html')
+def mypage(request):
+    return render(request, 'service/mypage.html')
+
+def recommend(request):
+    return render(request, 'service/recommend.html')
+
+def review(request):
+    return render(request, 'service/review.html')

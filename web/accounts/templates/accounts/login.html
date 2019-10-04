@@ -13,7 +13,10 @@
         <form action="" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <input type="submit" value="login" class="btn btn-outline-primary"/>
+            <ul>
+                <input type="submit" value="login" class="btn btn-outline-primary"/>
+                <a class="btn btn-outline-primary" href="{% url 'accounts:signup' %}">signup</a>
+            </ul>
         </form>
     </div>
     <div class="col"></div>

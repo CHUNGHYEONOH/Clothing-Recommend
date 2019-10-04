@@ -6,6 +6,7 @@ app_name = "service"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mainpage/', views.mainpage, name ='main'),
-    path('accounts/', include('accounts.urls')),
+    path('mypage/', views.mypage, name ='mypage'),
+    path('recommend/', views.recommend, name='recommend'),
+    path('review/', views.review, name='review'),
 ]
