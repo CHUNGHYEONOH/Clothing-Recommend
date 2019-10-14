@@ -1,10 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <style>
+    .recommend-box{
+      margin : 30px 50px 0px 50px
+    }
+    .card-group{
+      margin : 5px 0px 15px 0px
+    }
+    .card-img-top{
+      padding : 10px 3px 0px 3px;
+    }
+    #recommend-left{
+      margin : 0px 50px 0px 0px;
+      padding : 0px 50px 0px 50px;
+    }
+  </style>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="{% url 'service:mypage' %}">Mr.Helper</a>

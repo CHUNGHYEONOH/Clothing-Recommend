@@ -3,18 +3,115 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-5">
-            {% for object in object_list %}
-            {% endfor %}
-            <div class="card">
-
+<div class="recommend-box">
+<div class="row">
+    <!---왼쪽부분-->
+    <div class="col" id="recommend-left">
+        <div class="row">
+            <h2 align="right">추천</h2>
+        </div>
+        <div class="row">
+            <h3>category</h3>
+            <div class="card-group">
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Designer<br>Name<br>price</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
             </div>
-
+        </div>
+        <div class="row">
+            <h3>category</h3>
+            <div class="card-group">
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h6 class="card-title">Name</h6>
+                        <a class="desinger" href ="">designer</a>
+                        <p class="price">price</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">comment</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+
+    <!---오른쪽부분-->
+    <div class="col-4" id="recommend-right">
+        <h4>추천페이지</h4>
+        <div class="card-group">
+            <div class="card">
+                <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+            <div class="card">
+                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+        </div>
+    </div>
 </div>
+{% endblock %}

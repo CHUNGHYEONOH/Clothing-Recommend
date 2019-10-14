@@ -10,7 +10,7 @@
         <div class="alert alert-primary" role="alert">
             Please enter your login information.
         </div>
-        <form action="" method="post">
+        <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
             <ul>

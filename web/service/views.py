@@ -1,22 +1,10 @@
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from django.shortcuts import render
-from .models import Post
-
+from .models import Review
+from .forms import ReviewForm
 
 # Create your views here.
-def index(request):
-    post_list = Post.objects.all()
-    return render(request, 'service/index.html',{
-        'post_list': post_list, 
-    })
-
-def post_new(request):
-    return render(request, 'service/post_form.html')
-
-def post_detail(request, pk):
-    post = Post.objects.get(pk=pk)
-    return render(request, 'service/post_detail.html',{
-        'post':post,
-    })
 
 def mypage(request):
     return render(request, 'service/mypage.html')
@@ -25,4 +13,14 @@ def recommend(request):
     return render(request, 'service/recommend.html')
 
 def review(request):
-    return render(request, 'service/review.html')
+    reviews = Review.objects.all()
+    return render(request, 'service/review.html', {'reviews':reviews})
+
+def create(requset):
+    form = ReviewForm()
+    context = {'form' : form}
+    html_form = render_to_string('service/create.html',
+        context,
+        request = request,
+    )
+    return JsonResponse({'html_form':html_form})

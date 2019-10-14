@@ -9,4 +9,5 @@ urlpatterns = [
     path('mypage/', views.mypage, name ='mypage'),
     path('recommend/', views.recommend, name='recommend'),
     path('review/', views.review, name='review'),
+    path('create/', views.create, name='create'),
 ]

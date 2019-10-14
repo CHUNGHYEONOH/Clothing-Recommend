@@ -22,9 +22,6 @@ app_name = "web"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^(?P<pk>\d+)/$', views.post_detail),
-    path('new/', views.post_new),
     path('accounts/', include('accounts.urls')),
     path('service/', include('service.urls')),
-    
 ]

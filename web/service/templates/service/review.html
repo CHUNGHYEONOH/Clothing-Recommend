@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="service/review.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="review-box">
+    <h1 class="page-header">Reviews</h1>
+
+    <p>
+        <button type="button" class="btn btn-primary js-create-review">
+            <span class="glyphicon glyphicon-plus">
+                New Review
+            </span>
+        </button>
+    </p>
+
+    <table class="table" id="book-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Designer</th>
+        <th>Price</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in review_list %}
+        <tr>
+          <td>{{ review.id }}</td>
+          <td>{{ review.image }}</td>
+          <td>{{ review.title }}</td>
+          <td>{{ review.designer }}</td>
+          <td>{{ review.price }}</td>
+          <td>{{ review.score }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7" class="text-center bg-warning">No Reviews</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+
+    <div class="modal fade" id="modal-review">
+        <div class="modal-content">
+        </div>
+    </div>
+
+</div>
+{% endblock %}
