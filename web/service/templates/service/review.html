@@ -1,24 +1,16 @@
 {% extends 'base.html' %}
-{% block title %}
-{% endblock %}
 
-
-{% block javascript %}
-    <script src="service/review.js"></script>
-{% endblock %}
+{% load static %}
 
 {% block content %}
 <div class="review-box">
     <h1 class="page-header">Reviews</h1>
-
     <p>
-        <button type="button" class="btn btn-primary js-create-review">
-            <span class="glyphicon glyphicon-plus">
-                New Review
-            </span>
+        <button type="button" class="btn btn-primary" onclick="create_review()">
+            <span class="glyphicon glyphicon-plus"></span>
+            Review
         </button>
     </p>
-
     <table class="table" id="book-table">
     <thead>
       <tr>
@@ -31,14 +23,14 @@
       </tr>
     </thead>
     <tbody>
-      {% for review in review_list %}
+      {% for rev in Review %}
         <tr>
-          <td>{{ review.id }}</td>
-          <td>{{ review.image }}</td>
-          <td>{{ review.title }}</td>
-          <td>{{ review.designer }}</td>
-          <td>{{ review.price }}</td>
-          <td>{{ review.score }}</td>
+          <td>{{ rev.id }}</td>
+          <td>{{ rev.image }}</td>
+          <td>{{ rev.title }}</td>
+          <td>{{ rev.designer }}</td>
+          <td>{{ rev.price }}</td>
+          <td>{{ rev.score }}</td>
         </tr>
       {% empty %}
         <tr>
@@ -54,4 +46,22 @@
     </div>
 
 </div>
+<script type="text/javascript">
+    function create_review() {
+        var form = $(this);
+        $.ajax({
+            url: '/service/create_review/',
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function () {
+                $("#modal-review .modal-content").html("");
+                $("#modal-review").modal("show");
+            },
+            success: function (data) {
+                $("#modal-review .modal-content").html(data.html_form);
+            }
+        });
+    }
+</script>
+
 {% endblock %}

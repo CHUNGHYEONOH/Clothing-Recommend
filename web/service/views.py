@@ -13,13 +13,25 @@ def recommend(request):
     return render(request, 'service/recommend.html')
 
 def review(request):
-    reviews = Review.objects.all()
-    return render(request, 'service/review.html', {'reviews':reviews})
+    review = Review.objects.all()
+    return render(request, 'service/review.html', {'review':review})
 
-def create(requset):
+def create_review(request):
+    data = dict()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False
+    else:
+        form = ReviewForm()
+
     form = ReviewForm()
     context = {'form' : form}
-    html_form = render_to_string('service/create.html',
+    html_form = render_to_string('service/create_review.html',
         context,
         request = request,
     )

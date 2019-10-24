@@ -1,8 +1,7 @@
 $(function () {
-
     $(".js-create-review").click(function () {
       $.ajax({
-        url: '/service/create/',
+        url: '/service/create_review/',
         type: 'get',
         dataType: 'json',
         beforeSend: function () {
@@ -15,3 +14,5 @@ $(function () {
     });
   
   });
+
+ 
