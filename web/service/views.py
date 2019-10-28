@@ -18,12 +18,15 @@ def review(request):
 
 def create_review(request):
     data = dict()
-
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
             form.save()
             data['form_is_valid'] = True
+            Reviews = Review.objects.all()
+            data['html_review'] = render_to_string('service/review_list.html', {
+                'Reviews': Reviews
+            })
         else:
             data['form_is_valid'] = False
     else:
@@ -31,8 +34,5 @@ def create_review(request):
 
     form = ReviewForm()
     context = {'form' : form}
-    html_form = render_to_string('service/create_review.html',
-        context,
-        request = request,
-    )
-    return JsonResponse({'html_form':html_form})
+    data['html_form'] = render_to_string('service/create_review.html', context, request = request,)
+    return JsonResponse(data)
