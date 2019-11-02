@@ -3,35 +3,40 @@
 {% load static %}
 
 {% block content %}
+<script src="{% static 'service/js/review.js' %}" type="text/javascript"></script>
+
 <div class="review-box">
     <h1 class="page-header">Reviews</h1>
     <p>
         <button type="button" class="btn btn-primary js-create-review" data-url="{% url 'service:create_review' %}">
             <span class="glyphicon glyphicon-plus"></span>
-            Review
+            New Review
         </button>
     </p>
-    <table class="table" id="book-table">
+    <table class="table" id="review-table">
     <thead>
       <tr>
-        <th>#</th>
         <th>Image</th>
         <th>Title</th>
         <th>Designer</th>
         <th>Price</th>
         <th>Score</th>
+        <th>Option</th>
       </tr>
     </thead>
     <tbody>
-      {% for rev in Review %}
+      {% for rev in review %}
+        {% if rev.userid == user.username %}
         <tr>
-          <td>{{ rev.id }}</td>
-          <td>{{ rev.image }}</td>
+          <td>
+            <img src="{{ rev.image }}" width=80 height=80>
+          </td>
           <td>{{ rev.title }}</td>
           <td>{{ rev.designer }}</td>
           <td>{{ rev.price }}</td>
           <td>{{ rev.score }}</td>
         </tr>
+        {% endif %}
       {% empty %}
         <tr>
           <td colspan="7" class="text-center bg-warning">No Reviews</td>
@@ -41,12 +46,11 @@
     </table>
 
     <div class="modal fade" id="modal-review">
-        <div class="modal-content">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
         </div>
     </div>
 
 </div>
-
-<script src="{% static 'service/js/review.js' %}" type="text/javascript"></script>
 
 {% endblock %}

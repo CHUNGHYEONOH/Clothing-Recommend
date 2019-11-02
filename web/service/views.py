@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Review
 from .forms import ReviewForm
 
@@ -24,15 +24,39 @@ def create_review(request):
             form.save()
             data['form_is_valid'] = True
             Reviews = Review.objects.all()
-            data['html_review'] = render_to_string('service/review_list.html', {
+            data['html_review'] = render_to_string('service/review.html', {
                 'Reviews': Reviews
             })
         else:
             data['form_is_valid'] = False
     else:
         form = ReviewForm()
-
+    print(request.user)
     form = ReviewForm()
     context = {'form' : form}
     data['html_form'] = render_to_string('service/create_review.html', context, request = request,)
     return JsonResponse(data)
+
+
+'''
+def delete_review(request, pk):
+    print("0")
+    review = get_object_or_404(Review, pk=pk)
+    data = dict()
+    print("1")
+    if request.method == 'POST':
+        review.delete()
+        print("2")
+        data['form_is_valid'] = True  
+        Reviews = Review.objects.all()
+        data['html_review'] = render_to_string('service/review.html', {
+            'Reviews': Reviews,
+        })
+    else:
+        context = {'review': review}
+        data['html_form'] = render_to_string('service/review.html',
+            context,
+            request=request,
+        )
+    return JsonResponse(data)
+'''

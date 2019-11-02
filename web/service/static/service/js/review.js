@@ -1,8 +1,7 @@
-console.log("fuck");
-
 $(function (){
   var loadForm = function () {
     var btn = $(this);
+    console.log("loadform");
     $.ajax({
       url: btn.attr("data-url"),
       type: 'get',
@@ -24,7 +23,9 @@ $(function (){
       data: form.serialize(),
       type: form.attr("method"),
       dataType: 'json',
+      async: false,
       success: function (data) {
+        console.log("success");
         if (data.form_is_valid) {
           alert("hi!");
           $("#review-table tbody").html(data.html_review);
@@ -35,10 +36,15 @@ $(function (){
         }
       }
     });
+    console.log("saveform");
     return false;
   };
 
 
   $(".js-create-review").click(loadForm);
   $("#modal-review").on("submit", ".js-review-create-form", saveForm);
+
+//  $("#review-table").on("click", ".js-delete-review", loadForm);
+//  $("#modal-review").on("submit", ".js-review-delete-form", saveForm);
+
 });
