@@ -9,3 +9,11 @@ class Review(models.Model):
     designer = models.CharField(max_length=100)
     price = models.IntegerField()
     score = models.IntegerField()
+
+class Recommend_List(models.Model):
+    objects = models.Manager()
+    image = models.CharField(max_length=100)
+    title = models.CharField(max_length=50)
+    designer = models.CharField(max_length=100)
+    price = models.IntegerField()
+    score = models.IntegerField()

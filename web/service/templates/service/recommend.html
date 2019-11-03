@@ -13,40 +13,14 @@
         <div class="row">
             <h3>category</h3>
             <div class="card-group">
+                {% for rec in recommend %}
                 <div class="card">
-                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
+                    <img src="{{ rec.2 }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <p class="card-text">Designer<br>Name<br>price</p>
+                        <p class="card-text"><strong>{{ rec.1 }} <br>{{rec.3}} <br> 예상평점 : {{rec.0}}</strong></p>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">comment</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">comment</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">comment</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="//cache.mrporter.com/images/products/1161222/1161222_mrp_in_m2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">comment</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="row">

@@ -128,4 +128,4 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'serice/static')]
 
-LOGIN_REDIRECT_URL = '/service/mypage'
+LOGIN_REDIRECT_URL = '/service/review'

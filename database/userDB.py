@@ -4,9 +4,19 @@ import MySQLdb
 connect = MySQLdb.connect(port = 1902, host='localhost', user='root', password='1234', database='mysql', charset='utf8')
 cursor = connect.cursor()
 
+a = {}
+
 try:
-    cursor.execute("CREATE TABLE user (name VARCHAR(100) NOT NULL,\
-        email VARCHAR(100) NOT NULL, sex VARCHAR(20) NOT NULL,  )")
-        # 이름, 브랜드, 가격, 이미지, 카테고리, 세부카테고리
+    cursor.execute("SELECT userid, title, score FROM service_review")
+    for row in cursor:
+        if row[0] not in a:
+            a[row[0]] = {}        
+            print(a)
+            a[row[0]][row[1]] = row[2]
+        elif row[0] in a:
+            a[row[0]][row[1]] = row[2]
+    print(a)
 except MySQLdb._exceptions.OperationalError:
     print("already exist")
+
+
