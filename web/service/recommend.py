@@ -23,14 +23,14 @@ def pearson(data, name1, name2):
         result = 0
     return result
 
-def distance(data, name1, name2):
+def euclidean(data, name1, name2):
     sum=0
     for i in data[name1]:
         if i in data[name2]:
             sum+=pow(data[name1][i]- data[name2][i],2)
     return 1/(1+sqrt(sum))
 
-def match_users(data, name, index=5, sim1=pearson, sim2=distance):
+def match_users(data, name, index=5, sim1=pearson, sim2=euclidean):
     li=[]
     for i in data: 
         if name!=i:
@@ -41,6 +41,7 @@ def match_users(data, name, index=5, sim1=pearson, sim2=distance):
 
 def get_Recommend (data,person):
     result = match_users(data, person ,len(data))
+    print(result)
     score=0
     li=[]
     score_dic={}
@@ -86,7 +87,7 @@ class Recommend():
         
         recommend_result = []
         result_list = get_Recommend(user_eval, name)
-
+        print(result_list)
         i = 0
         for li in result_list:
             recommend_result.append([])

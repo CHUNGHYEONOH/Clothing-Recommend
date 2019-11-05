@@ -7,9 +7,6 @@ from .recommend import Recommend
 
 # Create your views here.
 
-def mypage(request):
-    return render(request, 'service/mypage.html')
-
 def recommend(request):
     rec = Recommend()
     name = str(request.user)

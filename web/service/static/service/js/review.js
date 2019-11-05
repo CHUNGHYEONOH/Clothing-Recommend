@@ -27,7 +27,7 @@ $(function (){
       success: function (data) {
         console.log("success");
         if (data.form_is_valid) {
-          alert("hi!");
+          alert("review created!");
           $("#review-table tbody").html(data.html_review);
           $("#modal-review").modal("hide");
         }
@@ -36,7 +36,6 @@ $(function (){
         }
       }
     });
-    console.log("saveform");
     return false;
   };
 

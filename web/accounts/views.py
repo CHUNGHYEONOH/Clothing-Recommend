@@ -8,7 +8,7 @@ def signup(request):
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
             signup_form.signup()
-            return render(request, 'service/mypage.html')
+            return render(request, 'service/review.html')
     else:
         signup_form = SignupForm()
 

@@ -9,4 +9,3 @@ class Review(models.Model):
     designer = models.CharField(max_length=100)
     price = models.FloatField()
     score = models.FloatField()
-

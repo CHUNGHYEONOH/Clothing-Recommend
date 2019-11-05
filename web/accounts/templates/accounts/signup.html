@@ -2,7 +2,7 @@
 
 {% block title %}Signup{% endblock %}
 {% block content %}
-<div class="signup">
+<div class="signup" id="signup-form">
 	<form action="" method="POST">
 		{% csrf_token %}
 		{% for field in signup_form %}
