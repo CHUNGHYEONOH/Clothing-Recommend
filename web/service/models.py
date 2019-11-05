@@ -5,15 +5,8 @@ class Review(models.Model):
     objects = models.Manager()
     image = models.CharField(max_length=100)
     userid = models.CharField(max_length=100)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     designer = models.CharField(max_length=100)
-    price = models.IntegerField()
-    score = models.IntegerField()
+    price = models.FloatField()
+    score = models.FloatField()
 
-class Recommend_List(models.Model):
-    objects = models.Manager()
-    image = models.CharField(max_length=100)
-    title = models.CharField(max_length=50)
-    designer = models.CharField(max_length=100)
-    price = models.IntegerField()
-    score = models.IntegerField()

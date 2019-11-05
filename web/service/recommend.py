@@ -1,7 +1,7 @@
 import MySQLdb
 from math import sqrt
 
-def sim_pearson(data, name1, name2):
+def pearson(data, name1, name2):
     sumX=0
     sumY=0
     sumPowX=0
@@ -16,14 +16,6 @@ def sim_pearson(data, name1, name2):
             sumPowY+=pow(data[name2][i],2)
             sumXY+=data[name1][i]*data[name2][i]
             count+=1
-    '''
-    print(sumX)
-    print(sumY)
-    print(sumPowX)
-    print(sumPowY)
-    print(sumXY)
-    print(count)
-    '''
     result = 0
     try:
         result = (sumXY-((sumX*sumY)/count))/sqrt((sumPowX-(pow(sumX,2)/count))*(sumPowY-(pow(sumY,2)/count)))
@@ -31,23 +23,23 @@ def sim_pearson(data, name1, name2):
         result = 0
     return result
 
-def sim_distance(data, name1, name2):
+def distance(data, name1, name2):
     sum=0
     for i in data[name1]:
         if i in data[name2]:
             sum+=pow(data[name1][i]- data[name2][i],2)
     return 1/(1+sqrt(sum))
 
-def match_users(data, name, index=5, sim_function=sim_pearson):
+def match_users(data, name, index=5, sim1=pearson, sim2=distance):
     li=[]
     for i in data: 
         if name!=i:
-            li.append((sim_function(data,name,i),i))
+            li.append((sim1(data,name,i)+sim2(data,name,i),i))
     li.sort() 
     li.reverse() 
     return li[:index]
 
-def getRecommendation (data,person,sim_function=sim_pearson):
+def get_Recommend (data,person):
     result = match_users(data, person ,len(data))
     score=0
     li=[]
@@ -91,9 +83,10 @@ class Recommend():
                     user_eval[row[0]][row[1]] = row[2]
         except MySQLdb._exceptions.OperationalError:
             print("error occurred")
-
+        
         recommend_result = []
-        result_list = getRecommendation(user_eval, name)
+        result_list = get_Recommend(user_eval, name)
+
         i = 0
         for li in result_list:
             recommend_result.append([])
@@ -110,8 +103,27 @@ class Recommend():
             except MySQLdb._exceptions.OperationalError:
                 print("error occurred")
             i=i+1
+        
+        '''
+        recommend = {}
+        categ = ""
 
-        #print(recommend_result)
+        for rl in recommend_result:        
+            st = "SELECT category FROM clothes WHERE name=" + "'" + rl[1] + "'"
+            try: 
+                cursor.execute(st)
+                for row in cursor:
+                    categ = row[0]
+                    break
+            except MySQLdb._exceptions.OperationalError:
+                print("error occurred")
+            if categ not in recommend:
+                recommend[categ] = {}
 
+            recommend[categ][rl[1]] = {} # rl[1] 이 title일 경우
+            recommend[categ][rl[1]]['image'] = rl[2]
+            recommend[categ][rl[1]]['designer'] = rl[3]
+            recommend[categ][rl[1]]['score'] = rl[0]
+        '''
         return recommend_result
 

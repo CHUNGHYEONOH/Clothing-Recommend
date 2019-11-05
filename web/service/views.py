@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-from django.shortcuts import render, get_object_or_404
-from .models import Review, Recommend_List
-from .forms import ReviewForm, RecommendForm
+from django.shortcuts import render
+from .models import Review
+from .forms import ReviewForm
 from .recommend import Recommend
 
 # Create your views here.
@@ -15,6 +15,7 @@ def recommend(request):
     name = str(request.user)
     try:
         recommend = rec.get_recommend_list(name)
+        print(recommend)
         return render(request, 'service/recommend.html', {'recommend':recommend})
     except:
         print("no data")

@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row" id="login">
     <div class="col"></div>
-    <div class="col-6">
+    <div class="col-3" id="login-subject">
         <div class="alert alert-primary" role="alert">
-            Please enter your login information.
+            Please enter your ID and Password
         </div>
-        <form action="" method="POST">
+        <form action="" method="POST" id="login-form">
             {% csrf_token %}
             {{form.as_p}}
             <ul>

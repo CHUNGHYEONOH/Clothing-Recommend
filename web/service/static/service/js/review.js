@@ -44,7 +44,4 @@ $(function (){
   $(".js-create-review").click(loadForm);
   $("#modal-review").on("submit", ".js-review-create-form", saveForm);
 
-//  $("#review-table").on("click", ".js-delete-review", loadForm);
-//  $("#modal-review").on("submit", ".js-review-delete-form", saveForm);
-
 });
